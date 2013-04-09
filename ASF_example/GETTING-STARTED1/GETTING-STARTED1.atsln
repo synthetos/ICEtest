@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "GETTING-STARTED1", "GETTING-STARTED1\GETTING-STARTED1.cproj", "{E09B6027-3AF1-4D73-BA0D-6C2E1AC87773}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E09B6027-3AF1-4D73-BA0D-6C2E1AC87773}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E09B6027-3AF1-4D73-BA0D-6C2E1AC87773}.Debug|ARM.Build.0 = Debug|ARM
+		{E09B6027-3AF1-4D73-BA0D-6C2E1AC87773}.Release|ARM.ActiveCfg = Release|ARM
+		{E09B6027-3AF1-4D73-BA0D-6C2E1AC87773}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
