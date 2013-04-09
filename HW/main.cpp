@@ -8,7 +8,6 @@
 //#define ARDUINO_MAIN
 #include "sam.h"
 #include "Arduino.h"
-#include "tinyg2.h"
 
 /*
 extern void SysTick_Handler( void )
@@ -24,7 +23,6 @@ int led = 13;
 void setup( void )
 {
 	pinMode(led, OUTPUT);
-	tg_setup();
 }
 
 void loop( void )

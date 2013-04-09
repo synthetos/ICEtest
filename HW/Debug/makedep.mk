@@ -110,11 +110,5 @@ platform\atmel_sam\libsam\source\usart.c
 
 platform\atmel_sam\libsam\source\wdt.c
 
-stepper.cpp
-
-system.cpp
-
-TinyG2.cpp
-
 variants\variant.cpp
 

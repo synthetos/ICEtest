@@ -6,8 +6,5 @@
 *.map
 *.srec
 *.atsuo
-*.cproj
-\bin
-\build
 .DS_Store
 TcfTransactionLog.csv

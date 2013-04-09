@@ -36,8 +36,6 @@ SUBDIRS :=  \
 ../cmsis/linkerScripts/ \
 ../cmsis/src/ \
 ../arduino \
-../motate \
-../motate/utility \
 ../platform \
 ../platform/atmel_sam \
 ../platform/atmel_sam/libsam \
@@ -102,9 +100,6 @@ C_SRCS +=  \
 ../platform/atmel_sam/libsam/source/uotghs_host.c \
 ../platform/atmel_sam/libsam/source/usart.c \
 ../platform/atmel_sam/libsam/source/wdt.c \
-../stepper.cpp \
-../system.cpp \
-../TinyG2.cpp \
 ../variants/variant.cpp
 
 
@@ -169,9 +164,6 @@ platform/atmel_sam/libsam/source/uotghs_device.o \
 platform/atmel_sam/libsam/source/uotghs_host.o \
 platform/atmel_sam/libsam/source/usart.o \
 platform/atmel_sam/libsam/source/wdt.o \
-stepper.o \
-system.o \
-TinyG2.o \
 variants/variant.o
 
 
@@ -230,9 +222,6 @@ platform/atmel_sam/libsam/source/uotghs_device.o \
 platform/atmel_sam/libsam/source/uotghs_host.o \
 platform/atmel_sam/libsam/source/usart.o \
 platform/atmel_sam/libsam/source/wdt.o \
-stepper.o \
-system.o \
-TinyG2.o \
 variants/variant.o
 
 
@@ -291,9 +280,6 @@ platform/atmel_sam/libsam/source/uotghs_device.d \
 platform/atmel_sam/libsam/source/uotghs_host.d \
 platform/atmel_sam/libsam/source/usart.d \
 platform/atmel_sam/libsam/source/wdt.d \
-stepper.d \
-system.d \
-TinyG2.d \
 variants/variant.d
 
 
@@ -352,9 +338,6 @@ platform/atmel_sam/libsam/source/uotghs_device.d \
 platform/atmel_sam/libsam/source/uotghs_host.d \
 platform/atmel_sam/libsam/source/usart.d \
 platform/atmel_sam/libsam/source/wdt.d \
-stepper.d \
-system.d \
-TinyG2.d \
 variants/variant.d
 
 
@@ -478,52 +461,46 @@ OUTPUT_FILE_DEP:= ./makedep.mk
 
 
 
-
-
-
-
-
-
 arduino/%.o: ../arduino/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 arduino/%.o: ../arduino/%.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 arduino/USB/%.o: ../arduino/USB/%.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 cmsis/src/%.o: ../cmsis/src/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 ./%.o: .././%.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 platform/atmel_sam/libsam/source/%.o: ../platform/atmel_sam/libsam/source/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -mlong-calls -g3 -Wall -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 variants/%.o: ../variants/%.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : (crosstool-NG 1.15.3 - Atmel build: 59) 4.7.0
-	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\motate" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
+	$(QUOTE)C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMGCCToolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAM3X8E__ -DF_CPU=84000000UL  -I"..\cmsis" -I"..\cmsis\CMSIS\Include" -I"..\cmsis\Device\ATMEL" -I"..\cmsis\Device\ATMEL\sam3xa\include" -I"..\arduino" -I"..\variants" -I"..\platform\atmel_sam\libsam" -I"..\platform\atmel_sam\libsam\include" -I"C:\Program Files\Atmel\Atmel Studio 6.0\extensions\Atmel\ARMGCC\3.3.1.128\ARMSupportFiles" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\CMSIS\Include" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL" -I"C:\PROGRA~1\Atmel\ATMELS~1.0\EXTENS~1\Atmel\ARMGCC\331~1.128\ARMSUP~1\Device\ATMEL\sam3xa\include"  -Os -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"  -mcpu=cortex-m3   -o"$@" "$<" 
 	@echo Finished building: $<
 
 
